@@ -46,7 +46,7 @@
 #define APR_WANT_STRFUNC
 #include "apr_want.h"
 
-module AP_MODULE_DECLARE_DATA aclr_module;
+module AP_MODULE_DECLARE_DATA aclr2_module;
 
 #define ACLR_VERSION "0.01"
 
@@ -107,7 +107,7 @@ aclr_handler(request_rec *r)
     char iredirect[MAX_STRING_LEN];
 
     aclr_dir_config *cfg = (aclr_dir_config *)ap_get_module_config
-                           (r->per_dir_config, &aclr_module);
+                           (r->per_dir_config, &aclr2_module);
 
     if (cfg->state != ACLR_ENABLED) {
         return DECLINED;
@@ -314,7 +314,7 @@ static void register_hooks(apr_pool_t *p)
     ap_hook_handler(aclr_handler, NULL, NULL, APR_HOOK_REALLY_LAST - 1);
 }
 
-module AP_MODULE_DECLARE_DATA aclr_module =
+module AP_MODULE_DECLARE_DATA aclr2_module =
 {
     STANDARD20_MODULE_STUFF,
     aclr_create_dir_config,     /* create per-directory config structures */
